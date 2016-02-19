@@ -72,10 +72,46 @@ gulp.task('default', ['coffee', 'concat', 'compass', 'server', 'liveReload', 'wa
 
 
 
+//Minify
+var htmlMinify = require('gulp-htmlmin');
+var cssMinify = require('gulp-cssnano');
 var jsMinify = require('gulp-uglify');
+var jsonMinify = require('gulp-jsonminify');
 
+gulp.task('htmlMinify', function() {
+	gulp.src('builds/development/*.html')
+		.pipe(htmlMinify({collapseWhitespace: true}))
+		.pipe(gulp.dest('builds/production'));
+});
+gulp.task('cssMinify', function() {
+    gulp.src('builds/development/css/*.css')
+        .pipe(cssMinify())
+        .pipe(gulp.dest('builds/production/css'));
+});
 gulp.task('jsMinify', function() {
 	gulp.src('builds/development/js/*.js')
 		.pipe(jsMinify())
 		.pipe(gulp.dest('builds/production/js'));
+});
+gulp.task('jsonMinify', function() {
+	gulp.src('builds/development/js/*.json')
+		.pipe(jsonMinify())
+		.pipe(gulp.dest('builds/production/js'));
+});
+//Put all the cmpression tasks together
+gulp.task('minify', ['htmlMinify', 'cssMinify', 'jsMinify', 'jsonMinify']);
+
+
+//Images auto compress(optional, be careful)
+var imgMinify = require('gulp-imagemin');
+var pngcrush = require('imagemin-pngcrush');
+gulp.task('imageMinify', function() {
+	//** for any folders, *.* for any files inside the folder
+	gulp.src('builds/development/images/**/*.*')
+		.pipe(imgMinify({
+			progressive: true,
+			svgoPlugins: [{removeViewBox: false}],  //for SVG
+			use: [pngcrush()]
+		}))
+		.pipe(gulp.dest('builds/production/images'));
 });
