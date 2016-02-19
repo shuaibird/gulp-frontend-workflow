@@ -98,7 +98,7 @@ gulp.task('jsonMinify', function() {
 		.pipe(jsonMinify())
 		.pipe(gulp.dest('builds/production/js'));
 });
-//Put all the cmpression tasks together
+//Put all the compression tasks together
 gulp.task('minify', ['htmlMinify', 'cssMinify', 'jsMinify', 'jsonMinify']);
 
 
