@@ -44,7 +44,7 @@ gulp.task('coffee', function() {
 gulp.task('concat', function() {
 	gulp.src(scriptSources)
 		.pipe(concat('script.js'))
-		.pipe(browserify())
+		.pipe(browserify())  //to automatically concat libraries
 		.pipe(gulp.dest('builds/development/js'));
 });
 
@@ -69,3 +69,13 @@ gulp.task('watch', function() {
 
 //gulp
 gulp.task('default', ['coffee', 'concat', 'compass', 'server', 'liveReload', 'watch']);
+
+
+
+var jsMinify = require('gulp-uglify');
+
+gulp.task('jsMinify', function() {
+	gulp.src('builds/development/js/*.js')
+		.pipe(jsMinify())
+		.pipe(gulp.dest('builds/production/js'));
+});
