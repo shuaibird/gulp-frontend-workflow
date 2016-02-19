@@ -105,7 +105,7 @@ gulp.task('minify', ['htmlMinify', 'cssMinify', 'jsMinify', 'jsonMinify']);
 //Images auto compress(optional, be careful)
 var imgMinify = require('gulp-imagemin');
 var pngcrush = require('imagemin-pngcrush');
-gulp.task('imageMinify', function() {
+gulp.task('imgMinify', function() {
 	//** for any folders, *.* for any files inside the folder
 	gulp.src('builds/development/images/**/*.*')
 		.pipe(imgMinify({
