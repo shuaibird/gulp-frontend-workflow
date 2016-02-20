@@ -9,7 +9,7 @@ var connect = require('gulp-connect');
 
 
 
-var sassSources = ['components/sass/style.css'];
+var sassSources = ['components/sass/style.scss'];
 var coffeeSources = ['components/coffee/tagline.coffee'];
 var scriptSources = ['components/scripts/*.js'];
 
@@ -52,9 +52,10 @@ gulp.task('concat', function() {
 gulp.task('compass', function() {
 	gulp.src(sassSources)
 		.pipe(compass({
+			sourcemap: true,
+			debug: true,
 			sass: 'components/sass',
 			css: 'builds/development/css',
-			image: 'builds/development/images',
 			style: 'expanded'
 		}).on('error', gutil.log));
 });
