@@ -4,6 +4,7 @@ var gutil = require('gulp-util');
 var coffee = require('gulp-coffee');
 var browserify = require('gulp-browserify');
 var compass = require('gulp-compass');
+var autoprefixer = require('gulp-autoprefixer');
 var concat = require('gulp-concat');
 var connect = require('gulp-connect');
 
@@ -53,11 +54,17 @@ gulp.task('compass', function() {
 	gulp.src(sassSources)
 		.pipe(compass({
 			sourcemap: true,
-			debug: true,
 			sass: 'components/sass',
 			css: 'builds/development/css',
 			style: 'expanded'
 		}).on('error', gutil.log));
+});
+
+//autoprefixer for css in development version
+gulp.task('autoprefixer', function() {
+	gulp.src(cssSources)
+		.pipe(autoprefixer())
+		.pipe(gulp.dest('builds/development/css'));
 });
 
 //watch for all changes
@@ -69,7 +76,7 @@ gulp.task('watch', function() {
 });
 
 //gulp
-gulp.task('default', ['coffee', 'concat', 'compass', 'server', 'liveReload', 'watch']);
+gulp.task('default', ['coffee', 'concat', 'compass', 'autoprefixer', 'server', 'liveReload', 'watch']);
 
 
 

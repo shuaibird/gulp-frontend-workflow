@@ -2,9 +2,6 @@
 // ========
 @mixin backImage($image) {
   background: url($image) no-repeat 50% 20% ; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
   background-size: cover;
  
   -webkit-transition: all 0.3s ease-out;
