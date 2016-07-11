@@ -1,8 +1,8 @@
 # Shuaibird's Frontend Workflow
 ##Main Feautures
 - type `gulp` to use the watch powerful feature and launch live-reloading local sever, once set up, everythings flows beautifully
-- type `gulf minify` to compress all the files (html, css, js & json) and save it into the production directory without any manual modification
-- type `gulf imgMinify` to compress the images (the origin ones inside the development dir won't be modified just for convenience)
+- type `gulp minify` to compress all the files (html, css, js & json) and save it into the production directory without any manual modification
+- type `gulp imgMinify` to compress the images (the origin ones inside the development dir won't be modified just for convenience)
 
 ##More Details
 1. `gulp default` includes:
